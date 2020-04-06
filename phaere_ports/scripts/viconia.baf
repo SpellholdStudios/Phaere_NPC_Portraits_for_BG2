@@ -1,0 +1,7 @@
+IF
+ Global("r#PhaerePortViconia","GLOBAL",0)
+THEN
+ RESPONSE #100
+  ApplySpellRES("r#ppvicc","Viconia")
+  SetGlobal("r#PhaerePortViconia","GLOBAL",1)
+END

@@ -1,0 +1,195 @@
+// Version 4.0
+
+BACKUP ~phaere_ports/backup~
+AUTHOR ~rastor@rpgdungeon.net~
+
+ALWAYS
+ ACTION_IF NOT FILE_EXISTS ~data/25dialog.bif~ // If ToB is not installed
+  THEN BEGIN
+   APPEND ~ACTION.IDS~
+~31 SpellRES(S:RES*,O:Target*)
+95 SpellPointRES(S:RES*,P:Target*) 
+113 ForceSpellRES(S:RES*,O:Target)
+114 ForceSpellPointRES(S:RES*,P:Target)
+160 ApplySpellRES(S:RES*,O:Target)
+181 ReallyForceSpellRES(S:RES*,O:Target) 
+191 SpellNoDecRES(S:RES*,O:Target*)
+192 SpellPointNoDecRES(S:RES*,P:Target*) 
+240 ReallyForceSpellDeadRES(S:RES*,O:Target)
+318 ForceSpellRangeRES(S:RES*,O:Target)
+319 ForceSpellPointRangeRES(S:RES*,P:Target)
+337 ReallyForceSpellPointRES(S:RES*,P:Target*)
+338 SetCutSceneLite(I:BOOL*BOOLEAN)~
+  BUT_ONLY_IF_IT_CHANGES
+  UNLESS ~SpellRES(S:RES*,O:Target*)~
+ END // ACTION_IF
+
+ AT_INTERACTIVE_EXIT ~VIEW phaere_ports/readme-PhaerePorts.html~
+
+END // ALWAYS
+
+LANGUAGE ~American English~ ~english~ ~phaere_ports/english/setup.tra~
+
+BEGIN @0
+
+COPY ~phaere_ports/minsc~ ~portraits~
+     ~phaere_ports/spells/r#ppmnsc.spl~ ~override~
+
+COPY_EXISTING_REGEXP ~minsc.*\.cre~ ~override~
+ WRITE_ASCII ~0x3c~ ~R#MINSCM~
+ WRITE_ASCII ~0x34~ ~R#MINSCS~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NMINSCL~ ~*R#MINSCL~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_TOP ~MINSC.BCS~ ~phaere_ports/scripts/minsc.baf~
+
+BEGIN @1
+
+COPY ~phaere_ports/aerie~ ~portraits~
+     ~phaere_ports/spells/r#pparie.spl~ ~override~
+
+COPY_EXISTING ~aerie6.cre~ ~override~
+ 	      ~aerie7.cre~ ~override~
+	      ~aerie9.cre~ ~override~
+	      ~aerie10.cre~ ~override~
+	      ~aerie11.cre~ ~override~
+	      ~aerie12.cre~ ~override~
+ WRITE_ASCII ~0x3c~ ~R#AERIEM~
+ WRITE_ASCII ~0x34~ ~R#AERIES~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NAERIEL~ ~*R#AERIEL~
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~AERIE.BCS~ ~override~
+ DECOMPILE_BCS_TO_BAF
+ REPLACE_TEXTUALLY ~ApplySpell(Myself,AERIE_PORTRAIT)~ ~ApplySpellRES("r#aeport", Myself)~
+ COMPILE_BAF_TO_BCS
+
+EXTEND_TOP ~AERIE.BCS~ ~phaere_ports/scripts/aerie.baf~
+
+BEGIN @2
+
+COPY ~phaere_ports/imoen~ ~portraits~
+     ~phaere_ports/spells/r#ppimmy.spl~ ~override~
+
+COPY_EXISTING_REGEXP ~imoen.*\.cre~ ~override~
+ WRITE_ASCII ~0x3c~ ~R#IMOENM~
+ WRITE_ASCII ~0x34~ ~R#IMOENS~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NIMOENL~ ~*R#IMOENL~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_TOP ~IMOEN.BCS~ ~phaere_ports/scripts/imoen.baf~
+EXTEND_TOP ~IMOEN2.BCS~ ~phaere_ports/scripts/imoen2.baf~
+
+BEGIN @3
+
+COPY ~phaere_ports/edwin~ ~portraits~
+     ~phaere_ports/spells/r#ppeddy.spl~ ~override~
+
+COPY_EXISTING_REGEXP ~edwin.*\.cre~ ~override~
+ WRITE_ASCII ~0x3c~ ~R#EDWINM~
+ WRITE_ASCII ~0x34~ ~R#EDWINS~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NEDWINL~ ~*R#EDWINL~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_TOP ~EDWIN.BCS~ ~phaere_ports/scripts/edwin.baf~
+
+BEGIN @4
+
+COPY ~phaere_ports/viccy~ ~portraits~
+     ~phaere_ports/spells/r#ppvicc.spl~ ~override~
+
+COPY_EXISTING_REGEXP ~vicon.*\.cre~ ~override~
+ WRITE_ASCII ~0x3C~ ~R#VICCYM~
+ WRITE_ASCII ~0x34~ ~R#VICCYS~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NVICONIL~ ~*R#VICCYL~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_TOP ~VICONIA.BCS~ ~phaere_ports/scripts/viconia.baf~
+
+BEGIN @5
+
+COPY ~phaere_ports/haer~ ~portraits~
+     ~phaere_ports/spells/r#pphaer.spl~ ~override~
+
+COPY_EXISTING_REGEXP ~haer.*\.cre~ ~override~
+ WRITE_ASCII ~0x3C~ ~R#HAERM~
+ WRITE_ASCII ~0x34~ ~R#HAERS~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NHAERL~ ~*R#HAERL~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_TOP ~HAERDALI.BCS~ ~phaere_ports/scripts/haerdalis.baf~
+
+BEGIN @6
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SAREVOK.CRE~
+ THEN BEGIN
+  COPY ~phaere_ports/sarevok~ ~portraits~
+       ~phaere_ports/spells/r#ppsare.spl~ ~override~
+
+  COPY_EXISTING ~sarevok.cre~ ~override~
+   WRITE_ASCII ~0x3c~ ~R#SAREVM~
+   WRITE_ASCII ~0x34~ ~R#SAREVS~
+
+  COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+   REPLACE_TEXTUALLY ~*SAREVOKL~ ~R#SAREVL~
+  BUT_ONLY_IF_IT_CHANGES
+
+  EXTEND_TOP ~SAREV25A.BCS~ ~phaere_ports/scripts/sarevok.baf~
+ END ELSE BEGIN
+  FAIL @11
+ END
+
+BEGIN @7
+
+COPY ~phaere_ports/jaheira~ ~portraits~
+     ~phaere_ports/spells/r#ppjahe.spl~ ~override~
+
+COPY_EXISTING_REGEXP ~jaheir.*\.cre~ ~override~
+ WRITE_ASCII ~0x3c~ ~R#JAHEIM~
+ WRITE_ASCII ~0x34~ ~R#JAHEIS~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NJAHEIRL~ ~R#JAHEIL~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_TOP ~JAHEIRA.BCS~ ~phaere_ports/scripts/jaheira.baf~
+
+BEGIN @8
+
+COPY ~phaere_ports/bodhi~ ~override~
+
+PRINT @10
+COPY_EXISTING_REGEXP ~.*\.cre~ ~override~
+ READ_ASCII 0x34 "name"
+ PATCH_IF ("%name%" STRING_COMPARE_CASE "NBODHIS"=0)
+  THEN BEGIN
+   WRITE_ASCII 0x34 ~R#BODHI~
+  END
+ BUT_ONLY_IF_IT_CHANGES
+
+BEGIN @9
+
+COPY ~phaere_ports/mazzy~ ~portraits~
+     ~phaere_ports/spells/r#ppmazz.spl~ ~override~
+
+COPY_EXISTING_REGEXP ~mazzy.*\.cre~ ~override~
+ WRITE_ASCII ~0x3c~ ~R#MAZZYM~
+ WRITE_ASCII ~0x34~ ~R#MAZZYS~
+
+COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
+ REPLACE_TEXTUALLY ~*NMAZZYL~ ~*R#MAZZYL~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_TOP ~MAZZY.BCS~ ~phaere_ports/scripts/mazzy.baf~

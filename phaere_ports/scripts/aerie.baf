@@ -1,0 +1,7 @@
+IF
+ Global("r#PhaerePortAerie","GLOBAL",0)
+THEN
+ RESPONSE #100
+  ApplySpellRES("r#pparie","Aerie")
+  SetGlobal("r#PhaerePortAerie","GLOBAL",1)
+END

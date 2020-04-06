@@ -1,0 +1,7 @@
+IF
+ Global("r#PhaerePortMinsc","GLOBAL",0)
+THEN
+ RESPONSE #100
+  ApplySpellRES("r#ppmnsc","Minsc")
+  SetGlobal("r#PhaerePortMinsc","GLOBAL",1)
+END

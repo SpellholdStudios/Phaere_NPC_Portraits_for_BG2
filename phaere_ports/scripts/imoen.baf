@@ -1,0 +1,7 @@
+IF
+ Global("r#PhaerePortImoen","GLOBAL",0)
+THEN
+ RESPONSE #100
+  ApplySpellRES("r#ppimmy","Imoen")
+  SetGlobal("r#PhaerePortImoen","GLOBAL",1)
+END

@@ -1,0 +1,7 @@
+IF
+ Global("r#PhaerePortHaerDalis","GLOBAL",0)
+THEN
+ RESPONSE #100
+  ApplySpellRES("r#pphaer","HaerDalis")
+  SetGlobal("r#PhaerePortHaerDalis","GLOBAL",1)
+END
