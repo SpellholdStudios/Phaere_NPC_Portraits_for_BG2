@@ -1,5 +1,4 @@
 // Version 4.0
-
 BACKUP ~phaere_ports/backup~
 AUTHOR ~rastor@rpgdungeon.net~
 
@@ -30,6 +29,10 @@ END // ALWAYS
 
 LANGUAGE ~American English~ ~english~ ~phaere_ports/english/setup.tra~
 
+
+/* ================ *
+ *  Minsc Portrait  *
+ * ================ */
 BEGIN @0
 
 COPY ~phaere_ports/minsc~ ~portraits~
@@ -45,6 +48,10 @@ BUT_ONLY_IF_IT_CHANGES
 
 EXTEND_TOP ~MINSC.BCS~ ~phaere_ports/scripts/minsc.baf~
 
+
+/* ================ *
+ *  Aerie Portrait  *
+ * ================ */
 BEGIN @1
 
 COPY ~phaere_ports/aerie~ ~portraits~
@@ -65,11 +72,15 @@ BUT_ONLY_IF_IT_CHANGES
 
 COPY_EXISTING ~AERIE.BCS~ ~override~
  DECOMPILE_BCS_TO_BAF
- REPLACE_TEXTUALLY ~ApplySpell(Myself,AERIE_PORTRAIT)~ ~ApplySpellRES("r#aeport", Myself)~
+ REPLACE_TEXTUALLY ~ApplySpell(Myself,AERIE_PORTRAIT)~ ~ApplySpellRES("r#pparie", Myself)~
  COMPILE_BAF_TO_BCS
 
 EXTEND_TOP ~AERIE.BCS~ ~phaere_ports/scripts/aerie.baf~
 
+
+/* ================ *
+ *  Imoen Portrait  *
+ * ================ */
 BEGIN @2
 
 COPY ~phaere_ports/imoen~ ~portraits~
@@ -86,6 +97,10 @@ BUT_ONLY_IF_IT_CHANGES
 EXTEND_TOP ~IMOEN.BCS~ ~phaere_ports/scripts/imoen.baf~
 EXTEND_TOP ~IMOEN2.BCS~ ~phaere_ports/scripts/imoen2.baf~
 
+
+/* ================ *
+ *  Edwin Portrait  *
+ * ================ */
 BEGIN @3
 
 COPY ~phaere_ports/edwin~ ~portraits~
@@ -101,6 +116,10 @@ BUT_ONLY_IF_IT_CHANGES
 
 EXTEND_TOP ~EDWIN.BCS~ ~phaere_ports/scripts/edwin.baf~
 
+
+/* ================== *
+ *  Viconia Portrait  *
+ * ================== */
 BEGIN @4
 
 COPY ~phaere_ports/viccy~ ~portraits~
@@ -111,11 +130,15 @@ COPY_EXISTING_REGEXP ~vicon.*\.cre~ ~override~
  WRITE_ASCII ~0x34~ ~R#VICCYS~
 
 COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NVICONIL~ ~*R#VICCYL~
+ REPLACE_TEXTUALLY ~*NVICONIL~ ~*R#VICCYL~ // NVICONL
 BUT_ONLY_IF_IT_CHANGES
 
 EXTEND_TOP ~VICONIA.BCS~ ~phaere_ports/scripts/viconia.baf~
 
+
+/* ===================== *
+ *  Haer'Dalis Portrait  *
+ * ===================== */
 BEGIN @5
 
 COPY ~phaere_ports/haer~ ~portraits~
@@ -131,6 +154,10 @@ BUT_ONLY_IF_IT_CHANGES
 
 EXTEND_TOP ~HAERDALI.BCS~ ~phaere_ports/scripts/haerdalis.baf~
 
+
+/* ================== *
+ *  Sarevok Portrait  *
+ * ================== */
 BEGIN @6
 
 ACTION_IF FILE_EXISTS_IN_GAME ~SAREVOK.CRE~
@@ -146,11 +173,15 @@ ACTION_IF FILE_EXISTS_IN_GAME ~SAREVOK.CRE~
    REPLACE_TEXTUALLY ~*SAREVOKL~ ~R#SAREVL~
   BUT_ONLY_IF_IT_CHANGES
 
-  EXTEND_TOP ~SAREV25A.BCS~ ~phaere_ports/scripts/sarevok.baf~
+  EXTEND_TOP ~sarev25.bcs~ ~phaere_ports/scripts/sarevok.baf~
  END ELSE BEGIN
   FAIL @11
  END
 
+
+/* ================== *
+ *  Jaheira Portrait  *
+ * ================== */
 BEGIN @7
 
 COPY ~phaere_ports/jaheira~ ~portraits~
@@ -166,6 +197,10 @@ BUT_ONLY_IF_IT_CHANGES
 
 EXTEND_TOP ~JAHEIRA.BCS~ ~phaere_ports/scripts/jaheira.baf~
 
+
+/* ================ *
+ *  Bodhi Portrait  *
+ * ================ */
 BEGIN @8
 
 COPY ~phaere_ports/bodhi~ ~override~
@@ -179,6 +214,10 @@ COPY_EXISTING_REGEXP ~.*\.cre~ ~override~
   END
  BUT_ONLY_IF_IT_CHANGES
 
+
+/* ================ *
+ *  Mazzy Portrait  *
+ * ================ */
 BEGIN @9
 
 COPY ~phaere_ports/mazzy~ ~portraits~
