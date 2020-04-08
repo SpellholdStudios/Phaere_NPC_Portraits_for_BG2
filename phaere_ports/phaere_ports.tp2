@@ -70,10 +70,11 @@ COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
  REPLACE_TEXTUALLY ~*NAERIEL~ ~*R#AERIEL~
 BUT_ONLY_IF_IT_CHANGES
 
-COPY_EXISTING ~AERIE.BCS~ ~override~
- DECOMPILE_BCS_TO_BAF
- REPLACE_TEXTUALLY ~ApplySpell(Myself,AERIE_PORTRAIT)~ ~ApplySpellRES("r#pparie", Myself)~
- COMPILE_BAF_TO_BCS
+COPY_EXISTING ~aerie.bcs~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+		REPLACE_TEXTUALLY ~ApplySpell(Myself,AERIE_PORTRAIT)~ ~ApplySpellRES("r#pparie", Myself)~
+	END
+BUT_ONLY
 
 EXTEND_TOP ~AERIE.BCS~ ~phaere_ports/scripts/aerie.baf~
 
