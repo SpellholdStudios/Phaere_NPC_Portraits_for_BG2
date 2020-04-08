@@ -1,7 +1,8 @@
 IF
- Global("r#PhaerePortMazzy","GLOBAL",0)
+	Global("r#PhaerePortMazzy","GLOBAL",0)
 THEN
- RESPONSE #100
-  ApplySpellRES("r#ppmazz","Mazzy")
-  SetGlobal("r#PhaerePortMazzy","GLOBAL",1)
+	RESPONSE #100
+		ApplySpellRES("r#ppmazz","Mazzy")
+		SetGlobal("r#PhaerePortMazzy","GLOBAL",1)
+		Continue()
 END

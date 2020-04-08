@@ -1,7 +1,8 @@
 IF
- Global("r#PhaerePortSarevok","GLOBAL",0)
+	Global("r#PhaerePortSarevok","GLOBAL",0)
 THEN
- RESPONSE #100
-  ApplySpellRES("r#ppsare","Sarevok")
-  SetGlobal("r#PhaerePortSarevok","GLOBAL",1)
+	RESPONSE #100
+		ApplySpellRES("r#ppsare","Sarevok")
+		SetGlobal("r#PhaerePortSarevok","GLOBAL",1)
+		Continue()
 END
