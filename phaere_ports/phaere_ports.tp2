@@ -4,10 +4,15 @@ AUTHOR ~rastor@rpgdungeon.net~
 
 ALWAYS
 
+	ACTION_IF NOT VARIABLE_IS_SET is_ee BEGIN // Always block must run only once per install!
 
-		// Adds ToB trigger/actions to SoA
+		// Determines which game is installed and if the game is an Enhanced Edition.
+		OUTER_SET is_ee = (GAME_IS ~bg2ee eet~) ? 1 : 0	// EE game
+
+		// Adds ToB trigger/actions to SoA games.
 		INCLUDE ~phaere_ports/lib/tob2soa.tph~
 
+	END
  AT_INTERACTIVE_EXIT ~VIEW phaere_ports/readme-PhaerePorts.html~
 
 END // of ALWAYS BLOCK
@@ -19,6 +24,8 @@ LANGUAGE ~American English~ ~english~ ~phaere_ports/english/setup.tra~
  *  Minsc Portrait  *
  * ================ */
 BEGIN @0
+DESIGNATED 0 LABEL ~phaere_ports_minsc~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
 
 COPY ~phaere_ports/minsc~ ~portraits~
      ~phaere_ports/spells/r#ppmnsc.spl~ ~override~
@@ -38,6 +45,8 @@ EXTEND_TOP ~MINSC.BCS~ ~phaere_ports/scripts/minsc.baf~
  *  Aerie Portrait  *
  * ================ */
 BEGIN @1
+DESIGNATED 1 LABEL ~phaere_ports_aerie~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
 
 COPY ~phaere_ports/aerie~ ~portraits~
      ~phaere_ports/spells/r#pparie.spl~ ~override~
@@ -68,6 +77,8 @@ EXTEND_TOP ~AERIE.BCS~ ~phaere_ports/scripts/aerie.baf~
  *  Imoen Portrait  *
  * ================ */
 BEGIN @2
+DESIGNATED 2 LABEL ~phaere_ports_imoen~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
 
 COPY ~phaere_ports/imoen~ ~portraits~
      ~phaere_ports/spells/r#ppimmy.spl~ ~override~
@@ -88,6 +99,8 @@ EXTEND_TOP ~IMOEN2.BCS~ ~phaere_ports/scripts/imoen2.baf~
  *  Edwin Portrait  *
  * ================ */
 BEGIN @3
+DESIGNATED 3 LABEL ~phaere_ports_edwin~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
 
 COPY ~phaere_ports/edwin~ ~portraits~
      ~phaere_ports/spells/r#ppeddy.spl~ ~override~
@@ -107,6 +120,8 @@ EXTEND_TOP ~EDWIN.BCS~ ~phaere_ports/scripts/edwin.baf~
  *  Viconia Portrait  *
  * ================== */
 BEGIN @4
+DESIGNATED 4 LABEL ~phaere_ports_viconia~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
 
 COPY ~phaere_ports/viccy~ ~portraits~
      ~phaere_ports/spells/r#ppvicc.spl~ ~override~
@@ -126,6 +141,8 @@ EXTEND_TOP ~VICONIA.BCS~ ~phaere_ports/scripts/viconia.baf~
  *  Haer'Dalis Portrait  *
  * ===================== */
 BEGIN @5
+DESIGNATED 5 LABEL ~phaere_ports_haerdalis~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
 
 COPY ~phaere_ports/haer~ ~portraits~
      ~phaere_ports/spells/r#pphaer.spl~ ~override~
@@ -145,9 +162,9 @@ EXTEND_TOP ~HAERDALI.BCS~ ~phaere_ports/scripts/haerdalis.baf~
  *  Sarevok Portrait  *
  * ================== */
 BEGIN @6
+DESIGNATED 6 LABEL ~phaere_ports_sarevok~
+REQUIRE_PREDICATE GAME_INCLUDES ~tob~ @12	// ~You must have Throne of Bhaal, BGT, BG2:EE or EET installed to install this component.~
 
-ACTION_IF FILE_EXISTS_IN_GAME ~SAREVOK.CRE~
- THEN BEGIN
   COPY ~phaere_ports/sarevok~ ~portraits~
        ~phaere_ports/spells/r#ppsare.spl~ ~override~
 
@@ -160,15 +177,14 @@ ACTION_IF FILE_EXISTS_IN_GAME ~SAREVOK.CRE~
   BUT_ONLY_IF_IT_CHANGES
 
   EXTEND_TOP ~sarev25.bcs~ ~phaere_ports/scripts/sarevok.baf~
- END ELSE BEGIN
-  FAIL @11
- END
 
 
 /* ================== *
  *  Jaheira Portrait  *
  * ================== */
 BEGIN @7
+DESIGNATED 7 LABEL ~phaere_ports_jaheira~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
 
 COPY ~phaere_ports/jaheira~ ~portraits~
      ~phaere_ports/spells/r#ppjahe.spl~ ~override~
@@ -188,6 +204,8 @@ EXTEND_TOP ~JAHEIRA.BCS~ ~phaere_ports/scripts/jaheira.baf~
  *  Bodhi Portrait  *
  * ================ */
 BEGIN @8
+DESIGNATED 8 LABEL ~phaere_ports_bodhi~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt~ @13 /* You must have the original game (SoA, ToB or BGT) installed to install this component. */
 
 COPY ~phaere_ports/bodhi~ ~override~
 
@@ -205,6 +223,8 @@ COPY_EXISTING_REGEXP ~.*\.cre~ ~override~
  *  Mazzy Portrait  *
  * ================ */
 BEGIN @9
+DESIGNATED 9 LABEL ~phaere_ports_mazzy~
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
 
 COPY ~phaere_ports/mazzy~ ~portraits~
      ~phaere_ports/spells/r#ppmazz.spl~ ~override~

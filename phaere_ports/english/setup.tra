@@ -4,9 +4,14 @@
 @3 = ~Edwin Portrait~
 @4 = ~Viconia Portrait~
 @5 = ~Haer'Dalis Portrait~
-@6 = ~Sarevok Portrait (This component requires ToB)~
+@6 = ~Sarevok Portrait (ToB only)~
 @7 = ~Jaheira Portrait~
-@8 = ~Bodhi Portrait~
+@8 = ~Bodhi Portrait (original game only)~
 @9 = ~Mazzy Portrait~
+
+
 @10 = ~This next step make take a few moments.~
-@11 = ~ToB is not installed.~
+
+@11 = ~You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component.~
+@12 = ~You must have Throne of Bhaal, BGT, BG2:EE or EET installed to install this component.~
+@13 = ~You must have the original game (SoA, ToB or BGT) installed to install this component.~

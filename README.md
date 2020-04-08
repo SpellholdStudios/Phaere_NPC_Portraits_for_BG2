@@ -155,6 +155,8 @@ In addition to the methods above for removing individual components, you can com
 
 #### Version 5.0 ( April 2020)
 
+- Added missing `REQUIRE_PREDICATE` process to avoid installing the mod in inaccurate games.
+- Added components `DESIGNATED` numbers and "*phaere_ports_%npc-names%*" `LABELS`.
 - Replaced old-school `DECOMPILE_BCS_TO_BAF` plus `COMPILE_BAF_TO_BCS` process with more accurate `DECOMPILE_AND_PATCH` command.
 - Added "*Continue()*" to the script blocks that are patched via `EXTEND_TOP`.
 - Fixed a bug with .2da files patching: *viconnd1* and *viconnd2* (was replacing "*NVICONIL*" portrait instead of *"NVICONL*").
