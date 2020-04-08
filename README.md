@@ -159,6 +159,7 @@ In addition to the methods above for removing individual components, you can com
 - Added "*Continue()*" to the script blocks that are patched via `EXTEND_TOP`.
 - Fixed a bug with .2da files patching: *viconnd1* and *viconnd2* (was replacing "*NVICONIL*" portrait instead of *"NVICONL*").
 - Fixed two bugs with .bcs files patching: *aerie* (was applying "*r#aeport*" spell instead of *"r#pparie*"), was patching *sarev25a* file instead of *sarev25*.
+- Cleaned up old ids entries patch replaced with more recent BG2 Fixpack one.
 - Removed useless backup folder.
 - Lower cased files.
 - Updated WeiDU installer to v246.

@@ -3,29 +3,14 @@ BACKUP ~phaere_ports/backup~
 AUTHOR ~rastor@rpgdungeon.net~
 
 ALWAYS
- ACTION_IF NOT FILE_EXISTS ~data/25dialog.bif~ // If ToB is not installed
-  THEN BEGIN
-   APPEND ~ACTION.IDS~
-~31 SpellRES(S:RES*,O:Target*)
-95 SpellPointRES(S:RES*,P:Target*) 
-113 ForceSpellRES(S:RES*,O:Target)
-114 ForceSpellPointRES(S:RES*,P:Target)
-160 ApplySpellRES(S:RES*,O:Target)
-181 ReallyForceSpellRES(S:RES*,O:Target) 
-191 SpellNoDecRES(S:RES*,O:Target*)
-192 SpellPointNoDecRES(S:RES*,P:Target*) 
-240 ReallyForceSpellDeadRES(S:RES*,O:Target)
-318 ForceSpellRangeRES(S:RES*,O:Target)
-319 ForceSpellPointRangeRES(S:RES*,P:Target)
-337 ReallyForceSpellPointRES(S:RES*,P:Target*)
-338 SetCutSceneLite(I:BOOL*BOOLEAN)~
-  BUT_ONLY_IF_IT_CHANGES
-  UNLESS ~SpellRES(S:RES*,O:Target*)~
- END // ACTION_IF
+
+
+		// Adds ToB trigger/actions to SoA
+		INCLUDE ~phaere_ports/lib/tob2soa.tph~
 
  AT_INTERACTIVE_EXIT ~VIEW phaere_ports/readme-PhaerePorts.html~
 
-END // ALWAYS
+END // of ALWAYS BLOCK
 
 LANGUAGE ~American English~ ~english~ ~phaere_ports/english/setup.tra~
 
