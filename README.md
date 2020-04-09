@@ -28,7 +28,7 @@ Baldur's Gate Trilogy and EET<h3>
 &nbsp;
 
 <div align="center">
-<a href="#intro">Overview</a> &#8226; <a href="#compat">Compatibility</a> &#8226; <a href="#installation">Installation</a> &#8226; <a href="#credits">Credits and Acknowledgements</a> &#8226; <a href="#versions">Version History</a></br>
+<a href="#intro">Overview</a> &#8226; <a href="#compat">Compatibility</a> &#8226; <a href="#installation">Installation</a> &#8226; <a href="#components">Components</a> &#8226; <a href="#credits">Credits and Acknowledgements</a> &#8226; <a href="#versions">Version History</a></br>
 </div>
 
 <hr>
@@ -125,61 +125,61 @@ The installer includes the following components. The number of each is the compo
 
 **0. Minsc Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/minsc.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/minsc.jpg"></div>
 
 ## 
 
 **1. Aerie Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/aerie.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/aerie.jpg"></div>
 
 ## 
 
 **5. Imoen Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/imoen.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/imoen.jpg"></div>
 
 ## 
 
 **3. Edwin Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/edwin.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/edwin.jpg"></div>
 
 ## 
 
 **4. Viconia Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/viconia.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/viconia.jpg"></div>
 
 ## 
 
 **5. Haer'Dalis Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/haerdalis.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/haerdalis.jpg"></div>
 
 ## 
 
 **6. Sarevok Portrait** (ToB only)<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/sarevok.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/sarevok.jpg"></div>
 
 ## 
 
 **7. Jaheira Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/jaheira.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/jaheira.jpg"></div>
 
 ## 
 
 **8. Bodhi Portrait** (original game only)<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/bodhi.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/bodhi.jpg"></div>
 
 ## 
 
 **9. Mazzy Portrait**<br />
 
-<img style="float: center;" src="phaere_ports/readme/images/mazzy.jpg"> 
+<div align="center"><img style="float: center;" src="phaere_ports/readme/images/mazzy.jpg"></div>
 <div align="right"><a href="#top">Back to top</a></div>
 
 
@@ -237,6 +237,7 @@ The installer includes the following components. The number of each is the compo
 - Resized portraits for original games to their right sizes (medium = 110 x 170 - small = 30 x 60).
 - Cleaned up old ids entries patch replaced with more recent BG2 Fixpack one.
 - Removed useless backup folder.
+- Reorganized mod architecture tree: created *portraits* folder to sort files according to their types.
 - Lower cased files.
 - Updated WeiDU installer to v246.
 - Uploaded mod to official Spellhold Studios GitHub mirror account.
