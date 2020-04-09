@@ -13,7 +13,7 @@ Baldur's Gate Trilogy and EET<h3>
 
 **Authors:** Phaere and Rastor  
 **Mod Website:** <a href="http://www.shsforums.net/forum/234-miscellaneous-released-mods/">Spellhold Studios</a>  
-**Mod Forum:** <a href="http://www.shsforums.net/topic/60737-super-firkraag-updated-to-v16-ee-compatible/">Super Firkraag</a>  
+**Mod Forum:** <a href="http://www.shsforums.net/topic/60737-super-firkraag-updated-to-v16-ee-compatible/">Phaere NPC Portraits for BG2</a>  
 
 
 [Read the mod's readme](http://spellholdstudios.github.io/readmes/phaere_ports-readme-english.html)
@@ -22,7 +22,7 @@ Baldur's Gate Trilogy and EET<h3>
 
 &nbsp;
 
-**Note:** This mod was first released at <a href="http://web.archive.org/web/20120414212350/http://www.rpgdungeon.net/content/view/30/44/">RPGDungeon.net</a>. As this site is no more available since many years, it was time to save it from disappearance. It is now hosted at Spellhold Studios with Rastor authorization.
+**Note:** This mod was first released at <a href="http://web.archive.org/web/20120414212350/http://www.rpgdungeon.net/content/view/27/42/">RPGDungeon.net</a>. As this site is no more available since many years, it was time to save it from disappearance. It is now hosted at Spellhold Studios with Rastor authorization.
 
 
 &nbsp;
@@ -36,9 +36,7 @@ Baldur's Gate Trilogy and EET<h3>
 
 ## <a name="intro" id="intro"></a>Overview
 
-This mod .
-
-<div align="right"><a href="#top">Back to top</a></div>
+This mod installs a collection of portraits by Phaere designed to replace those currently found in Baldur's Gate II. Rastor modified them to work with the Infinity Engine and packaged them up with Phaere's blessing.
 
 
 <hr>
@@ -223,6 +221,8 @@ The installer includes the following components. The number of each is the compo
 
 #### Version 5.0 ( April 2020)
 
+- Added `VERSION` flag.
+- Replaced `AT_INTERACTIVE_EXIT` deprecated command with `README`.
 - Added missing `REQUIRE_PREDICATE` process to avoid installing the mod in inaccurate games.
 - Added components `DESIGNATED` numbers and "*phaere_ports_%npc-names%*" `LABELS`.
 - Modernized and speeded up installation process:
