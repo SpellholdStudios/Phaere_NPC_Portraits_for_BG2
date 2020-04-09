@@ -9,9 +9,8 @@
 @8 = ~Bodhi Portrait (original game only)~
 @9 = ~Mazzy Portrait~
 
+@21 = ~You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component.~
+@22 = ~You must have Throne of Bhaal, BGT, BG2:EE or EET installed to install this component.~
+@23 = ~You must have the original game (SoA, ToB or BGT) installed to install this component.~
 
-@10 = ~This next step make take a few moments.~
-
-@11 = ~You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component.~
-@12 = ~You must have Throne of Bhaal, BGT, BG2:EE or EET installed to install this component.~
-@13 = ~You must have the original game (SoA, ToB or BGT) installed to install this component.~
+@30 = ~Patching files... This step make take a few moments.~

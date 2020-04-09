@@ -1,0 +1,123 @@
+/* ================================================================================================================ *
+ *  FUNCTION gw_install_portraits : Install and patch all necessary files                                           *
+ * ---------------------------------------------------------------------------------------------------------------- *
+ *  Variables :                                                                                                     *
+ *    - npc    = portrait folder and file name.                                                                     *
+ *    - spell  = spell applied to creatures.                                                                        *
+ *    - cre    = cre files to patch (same = npc value).                                                             *
+ *    - epil   = epilogues .2da files to patch (2 = used for romances).                                             *
+ *    - script = baf file to patch (same = npc value).                                                              *
+ * ---------------------------------------------------------------------------------------------------------------- *
+ *  Functions for missing NPC portraits.                                                                            *
+ *    - LAF gw_install_portraits STR_VAR npc = anome cre = anomen spell = "r#ppanmn" epil = 2 script = anomen END   *
+ *    - LAF gw_install_portraits STR_VAR npc = cernd spell = "r#ppcrnd" END                                         *
+ *    - LAF gw_install_portraits STR_VAR npc = jan spell = "r#ppjan" END                                            *
+ *    - LAF gw_install_portraits STR_VAR npc = keldo cre = keldor spell = "r#ppkeld" script = keldorn END           *
+ *    - LAF gw_install_portraits STR_VAR npc = korga cre = korgan spell = "r#ppkorg" script = korgan END            *
+ *    - LAF gw_install_portraits STR_VAR npc = nalia spell = "r#ppnali" END                                         *
+ *    - LAF gw_install_portraits STR_VAR npc = valyg spell = "r#ppvaly" script = valygar END                        *
+ * ================================================================================================================ */
+
+DEFINE_ACTION_FUNCTION ~gw_install_portraits~
+	STR_VAR 
+		npc = ""
+		spell = ""
+		cre = "same"
+		epil = "1"
+		script = "same"
+BEGIN
+
+// 0. SETTING Variables.
+// ---------------------
+	// Creature prefixes file to be patched.
+	ACTION_IF ("%cre%" STRING_EQUAL "same") BEGIN
+		OUTER_TEXT_SPRINT cre EVAL "%npc%"
+	END
+
+	// Portraits names.
+	OUTER_TEXT_SPRINT small_portrait EVAL "r#%npc%s"
+	ACTION_TO_UPPER small_portrait
+	OUTER_TEXT_SPRINT medium_portrait EVAL "r#%npc%m"
+	ACTION_TO_UPPER medium_portrait
+	OUTER_TEXT_SPRINT large_portrait EVAL "r#%npc%l"
+	ACTION_TO_UPPER large_portrait
+	ACTION_MATCH "%cre%" WITH
+		"sarevok" BEGIN OUTER_TEXT_SPRINT old_large_portrait EVAL "%cre%l" END	// Special case: Sarevok portrait is sarevokl (without "n" prefix) - TODO Add Valygar ==> NVALYGAL
+		"viconi"  BEGIN OUTER_TEXT_SPRINT old_large_portrait "nviconl" END		// Special case: Viconia large portrait is nviconl.
+		DEFAULT   OUTER_TEXT_SPRINT old_large_portrait EVAL "n%cre%l"
+	END
+ // PRINT "DEBUG CONTROL small_portrait = %small_portrait% - medium_portrait = %medium_portrait% - large_portrait = %large_portrait% - old_large_portrait = %old_large_portrait%"
+
+	// 2da files to be patched.
+	ACTION_MATCH "%cre%" WITH
+		"sarevok" "jaheir"	BEGIN OUTER_TEXT_SPRINT 2da EVAL "%npc%nd" END	// Special cases: Sarevok and Jaheira epilogue sequence 2da files.
+		"viconi"			BEGIN OUTER_TEXT_SPRINT 2da "viconnd" END		// Special case: Viconia epilogue sequence 2da files.
+		DEFAULT   OUTER_TEXT_SPRINT 2da EVAL "%cre%nd"
+	END
+
+	// bcs files to be patched.
+	ACTION_IF ("%script%" STRING_EQUAL "same") BEGIN
+		OUTER_TEXT_SPRINT script EVAL "%npc%"
+	END
+	
+// 1. COPYING portraits and spells.
+// --------------------------------
+	ACTION_IF is_ee BEGIN
+		OUTER_SPRINT small_portrait EVAL "r%npc%m"
+		ACTION_TO_UPPER %small_portrait%
+		COPY ~phaere_ports/portraits/%npc%/r#%npc%l.bmp~ ~portraits~
+		     ~phaere_ports/portraits/%npc%/r#%npc%l.bmp~ ~portraits/r#%npc%m.bmp~
+		COPY ~phaere_ports/spells/%spell%.spl~           ~override~
+			LPF ALTER_EFFECT INT_VAR check_globals = 0 multi_match = 1 silent = 1 match_opcode = 107 match_parameter2 = 0 STR_VAR resource = EVAL "%small_portrait%" END
+		BUT_ONLY
+	END ELSE BEGIN
+		COPY ~phaere_ports/portraits/%npc%~    ~portraits~
+			 ~phaere_ports/spells/%spell%.spl~ ~override~
+	END
+
+// 2. PATCHING .CRE FILES.
+// -----------------------
+	OUTER_SPRINT file-exc ~aerie sarevokd sarevokg ~ // Special cases: aerie.cre - Sarevok special cre + jangit01 jangit02 janos + naliames
+	COPY_EXISTING_REGEXP GLOB ~^%cre%\([0-9]+\|d\|drm\|\)\.cre~ ~override~
+		TO_LOWER %SOURCE_RES%
+		PATCH_IF (~%SOURCE_RES%~ STR_EQ "sarevok") OR (~%file-exc%~ STRING_CONTAINS_REGEXP ~%SOURCE_RES%~ = 1) BEGIN
+			WRITE_ASCIIE 0x34 ~%small_portrait%~ #8		// small portrait
+			WRITE_ASCIIE 0x3c ~%medium_portrait%~ #8	// medium portrait
+		END
+	BUT_ONLY IF_EXISTS
+
+// 3. PATCHING Epilogue .2DA files.
+// --------------------------------
+	ACTION_MATCH "%epil%" WITH
+		"2" BEGIN
+			COPY_EXISTING ~%2da%1.2da~ ~override~
+						  ~%2da%2.2da~ ~override~
+				REPLACE_TEXTUALLY ~*%old_large_portrait%~ ~%large_portrait%~
+			BUT_ONLY
+		END
+		DEFAULT
+			COPY_EXISTING ~%2da%.2da~ ~override~
+				REPLACE_TEXTUALLY ~*%old_large_portrait%~ ~%large_portrait%~
+			BUT_ONLY
+	END
+
+// 4. PATCHING script files.
+// -------------------------
+	ACTION_MATCH "%script%" WITH
+		"imoen"	BEGIN
+			EXTEND_TOP ~%script%.bcs~  ~phaere_ports/scripts/%script%.baf~
+			EXTEND_TOP ~%script%2.bcs~ ~phaere_ports/scripts/%script%2.baf~
+		END
+		"aerie"	BEGIN 
+			COPY_EXISTING ~%script%.bcs~ ~override~
+					DECOMPILE_AND_PATCH BEGIN
+						REPLACE_TEXTUALLY ~ApplySpell(Myself,AERIE_PORTRAIT)~ ~ApplySpellRES("r#pparie", Myself)~
+					END
+			BUT_ONLY
+			EXTEND_TOP ~%script%.bcs~ ~phaere_ports/scripts/%script%.baf~
+		END
+		DEFAULT
+			EXTEND_TOP ~%script%.bcs~ ~phaere_ports/scripts/%script%.baf~
+	END
+
+END	// of DEFINE_ACTION_FUNCTION

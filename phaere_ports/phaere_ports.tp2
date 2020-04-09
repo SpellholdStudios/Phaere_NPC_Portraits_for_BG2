@@ -12,6 +12,9 @@ ALWAYS
 		// Adds ToB trigger/actions to SoA games.
 		INCLUDE ~phaere_ports/lib/tob2soa.tph~
 
+		// Adds new portrait installation process.
+		INCLUDE ~phaere_ports/lib/gw_install_portraits.tpa~
+
 	END
  AT_INTERACTIVE_EXIT ~VIEW phaere_ports/readme-PhaerePorts.html~
 
@@ -25,20 +28,13 @@ LANGUAGE ~American English~ ~english~ ~phaere_ports/english/setup.tra~
  * ================ */
 BEGIN @0
 DESIGNATED 0 LABEL ~phaere_ports_minsc~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @21 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
 
-COPY ~phaere_ports/minsc~ ~portraits~
-     ~phaere_ports/spells/r#ppmnsc.spl~ ~override~
+LAF ~gw_install_portraits~ STR_VAR npc = minsc spell = "r#ppmnsc" END
 
-COPY_EXISTING_REGEXP ~minsc.*\.cre~ ~override~
- WRITE_ASCII ~0x3c~ ~R#MINSCM~
- WRITE_ASCII ~0x34~ ~R#MINSCS~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NMINSCL~ ~*R#MINSCL~
-BUT_ONLY_IF_IT_CHANGES
-
-EXTEND_TOP ~MINSC.BCS~ ~phaere_ports/scripts/minsc.baf~
+COPY_EXISTING ~npcminsc.2da~ ~override~
+	REPLACE_TEXTUALLY ~*NMINSCL~ ~*R#MINSCL~
+BUT_ONLY
 
 
 /* ================ *
@@ -46,31 +42,9 @@ EXTEND_TOP ~MINSC.BCS~ ~phaere_ports/scripts/minsc.baf~
  * ================ */
 BEGIN @1
 DESIGNATED 1 LABEL ~phaere_ports_aerie~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @21
 
-COPY ~phaere_ports/aerie~ ~portraits~
-     ~phaere_ports/spells/r#pparie.spl~ ~override~
-
-COPY_EXISTING ~aerie6.cre~ ~override~
- 	      ~aerie7.cre~ ~override~
-	      ~aerie9.cre~ ~override~
-	      ~aerie10.cre~ ~override~
-	      ~aerie11.cre~ ~override~
-	      ~aerie12.cre~ ~override~
- WRITE_ASCII ~0x3c~ ~R#AERIEM~
- WRITE_ASCII ~0x34~ ~R#AERIES~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NAERIEL~ ~*R#AERIEL~
-BUT_ONLY_IF_IT_CHANGES
-
-COPY_EXISTING ~aerie.bcs~ ~override~
-	DECOMPILE_AND_PATCH BEGIN
-		REPLACE_TEXTUALLY ~ApplySpell(Myself,AERIE_PORTRAIT)~ ~ApplySpellRES("r#pparie", Myself)~
-	END
-BUT_ONLY
-
-EXTEND_TOP ~AERIE.BCS~ ~phaere_ports/scripts/aerie.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = aerie spell = "r#pparie" epil = 2 END
 
 
 /* ================ *
@@ -78,21 +52,9 @@ EXTEND_TOP ~AERIE.BCS~ ~phaere_ports/scripts/aerie.baf~
  * ================ */
 BEGIN @2
 DESIGNATED 2 LABEL ~phaere_ports_imoen~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @21
 
-COPY ~phaere_ports/imoen~ ~portraits~
-     ~phaere_ports/spells/r#ppimmy.spl~ ~override~
-
-COPY_EXISTING_REGEXP ~imoen.*\.cre~ ~override~
- WRITE_ASCII ~0x3c~ ~R#IMOENM~
- WRITE_ASCII ~0x34~ ~R#IMOENS~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NIMOENL~ ~*R#IMOENL~
-BUT_ONLY_IF_IT_CHANGES
-
-EXTEND_TOP ~IMOEN.BCS~ ~phaere_ports/scripts/imoen.baf~
-EXTEND_TOP ~IMOEN2.BCS~ ~phaere_ports/scripts/imoen2.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = imoen spell = "r#ppimmy" END
 
 
 /* ================ *
@@ -102,18 +64,7 @@ BEGIN @3
 DESIGNATED 3 LABEL ~phaere_ports_edwin~
 REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
 
-COPY ~phaere_ports/edwin~ ~portraits~
-     ~phaere_ports/spells/r#ppeddy.spl~ ~override~
-
-COPY_EXISTING_REGEXP ~edwin.*\.cre~ ~override~
- WRITE_ASCII ~0x3c~ ~R#EDWINM~
- WRITE_ASCII ~0x34~ ~R#EDWINS~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NEDWINL~ ~*R#EDWINL~
-BUT_ONLY_IF_IT_CHANGES
-
-EXTEND_TOP ~EDWIN.BCS~ ~phaere_ports/scripts/edwin.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = edwin spell = "r#ppeddy" END
 
 
 /* ================== *
@@ -121,20 +72,9 @@ EXTEND_TOP ~EDWIN.BCS~ ~phaere_ports/scripts/edwin.baf~
  * ================== */
 BEGIN @4
 DESIGNATED 4 LABEL ~phaere_ports_viconia~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @21
 
-COPY ~phaere_ports/viccy~ ~portraits~
-     ~phaere_ports/spells/r#ppvicc.spl~ ~override~
-
-COPY_EXISTING_REGEXP ~vicon.*\.cre~ ~override~
- WRITE_ASCII ~0x3C~ ~R#VICCYM~
- WRITE_ASCII ~0x34~ ~R#VICCYS~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
-	REPLACE_TEXTUALLY ~*NVICONL~ ~*R#VICCYL~
-BUT_ONLY
-
-EXTEND_TOP ~VICONIA.BCS~ ~phaere_ports/scripts/viconia.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = viccy cre = viconi spell = "r#ppvicc" epil = 2 script = viconia END
 
 
 /* ===================== *
@@ -142,41 +82,19 @@ EXTEND_TOP ~VICONIA.BCS~ ~phaere_ports/scripts/viconia.baf~
  * ===================== */
 BEGIN @5
 DESIGNATED 5 LABEL ~phaere_ports_haerdalis~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @21
 
-COPY ~phaere_ports/haer~ ~portraits~
-     ~phaere_ports/spells/r#pphaer.spl~ ~override~
-
-COPY_EXISTING_REGEXP ~haer.*\.cre~ ~override~
- WRITE_ASCII ~0x3C~ ~R#HAERM~
- WRITE_ASCII ~0x34~ ~R#HAERS~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NHAERL~ ~*R#HAERL~
-BUT_ONLY_IF_IT_CHANGES
-
-EXTEND_TOP ~HAERDALI.BCS~ ~phaere_ports/scripts/haerdalis.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = haer spell = "r#pphaer" script = haerdali END
 
 
-/* ================== *
- *  Sarevok Portrait  *
- * ================== */
+/* ============================= *
+ *  Sarevok Portrait (ToB only)  *
+ * ============================= */
 BEGIN @6
 DESIGNATED 6 LABEL ~phaere_ports_sarevok~
-REQUIRE_PREDICATE GAME_INCLUDES ~tob~ @12	// ~You must have Throne of Bhaal, BGT, BG2:EE or EET installed to install this component.~
+REQUIRE_PREDICATE GAME_INCLUDES ~tob~ @22	// ~You must have Throne of Bhaal, BGT, BG2:EE or EET installed to install this component.~
 
-  COPY ~phaere_ports/sarevok~ ~portraits~
-       ~phaere_ports/spells/r#ppsare.spl~ ~override~
-
-  COPY_EXISTING ~sarevok.cre~ ~override~
-   WRITE_ASCII ~0x3c~ ~R#SAREVM~
-   WRITE_ASCII ~0x34~ ~R#SAREVS~
-
-  COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
-   REPLACE_TEXTUALLY ~*SAREVOKL~ ~R#SAREVL~
-  BUT_ONLY_IF_IT_CHANGES
-
-  EXTEND_TOP ~sarev25.bcs~ ~phaere_ports/scripts/sarevok.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = sarev cre = sarevok spell = "r#ppsare" script = sarev25 END
 
 
 /* ================== *
@@ -184,39 +102,27 @@ REQUIRE_PREDICATE GAME_INCLUDES ~tob~ @12	// ~You must have Throne of Bhaal, BGT
  * ================== */
 BEGIN @7
 DESIGNATED 7 LABEL ~phaere_ports_jaheira~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @21 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
 
-COPY ~phaere_ports/jaheira~ ~portraits~
-     ~phaere_ports/spells/r#ppjahe.spl~ ~override~
-
-COPY_EXISTING_REGEXP ~jaheir.*\.cre~ ~override~
- WRITE_ASCII ~0x3c~ ~R#JAHEIM~
- WRITE_ASCII ~0x34~ ~R#JAHEIS~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NJAHEIRL~ ~R#JAHEIL~
-BUT_ONLY_IF_IT_CHANGES
-
-EXTEND_TOP ~JAHEIRA.BCS~ ~phaere_ports/scripts/jaheira.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = jahei cre = jaheir spell = "r#ppjahe" epil = 2 script = jaheira END
 
 
-/* ================ *
- *  Bodhi Portrait  *
- * ================ */
+/* ===================================== *
+ *  Bodhi Portrait (original game only)  *
+ * ===================================== */
 BEGIN @8
 DESIGNATED 8 LABEL ~phaere_ports_bodhi~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt~ @13 /* You must have the original game (SoA, ToB or BGT) installed to install this component. */
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt~ @23 /* You must have the original game (SoA, ToB or BGT) installed to install this component. */
 
 COPY ~phaere_ports/bodhi~ ~override~
 
-PRINT @10
+PRINT @30 // ~Patching files... This step make take a few moments.~
 COPY_EXISTING_REGEXP ~.*\.cre~ ~override~
- READ_ASCII 0x34 "name"
- PATCH_IF ("%name%" STRING_COMPARE_CASE "NBODHIS"=0)
-  THEN BEGIN
-   WRITE_ASCII 0x34 ~R#BODHI~
-  END
- BUT_ONLY_IF_IT_CHANGES
+	READ_ASCII 0x34 "name"
+	PATCH_IF ("%name%" STRING_COMPARE_CASE "NBODHIS" = 0) BEGIN
+		WRITE_ASCII 0x34 ~R#BODHI~ #8
+	END
+BUT_ONLY
 
 
 /* ================ *
@@ -224,17 +130,6 @@ COPY_EXISTING_REGEXP ~.*\.cre~ ~override~
  * ================ */
 BEGIN @9
 DESIGNATED 9 LABEL ~phaere_ports_mazzy~
-REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @11 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
+REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt bg2ee eet~ @21 /* You must have BG2, ToB, BGT, BG2:EE or EET installed to install this component. */
 
-COPY ~phaere_ports/mazzy~ ~portraits~
-     ~phaere_ports/spells/r#ppmazz.spl~ ~override~
-
-COPY_EXISTING_REGEXP ~mazzy.*\.cre~ ~override~
- WRITE_ASCII ~0x3c~ ~R#MAZZYM~
- WRITE_ASCII ~0x34~ ~R#MAZZYS~
-
-COPY_EXISTING_REGEXP ~.*\.2da~ ~override~
- REPLACE_TEXTUALLY ~*NMAZZYL~ ~*R#MAZZYL~
-BUT_ONLY_IF_IT_CHANGES
-
-EXTEND_TOP ~MAZZY.BCS~ ~phaere_ports/scripts/mazzy.baf~
+LAF ~gw_install_portraits~ STR_VAR npc = mazzy spell = "r#ppmazz" END

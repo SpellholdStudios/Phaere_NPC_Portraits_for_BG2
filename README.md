@@ -118,6 +118,74 @@ In addition to the methods above for removing individual components, you can com
 <hr>
 
 
+## <a name="components" id="components"></a>Components
+
+The installer includes the following components. The number of each is the component DESIGNATED number which gives it a fixed install position and allows automated installers to specify component choices.<br /><br />
+
+
+**0. Minsc Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/minsc.jpg"> 
+
+## 
+
+**1. Aerie Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/aerie.jpg"> 
+
+## 
+
+**5. Imoen Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/imoen.jpg"> 
+
+## 
+
+**3. Edwin Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/edwin.jpg"> 
+
+## 
+
+**4. Viconia Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/viconia.jpg"> 
+
+## 
+
+**5. Haer'Dalis Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/haerdalis.jpg"> 
+
+## 
+
+**6. Sarevok Portrait** (ToB only)<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/sarevok.jpg"> 
+
+## 
+
+**7. Jaheira Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/jaheira.jpg"> 
+
+## 
+
+**8. Bodhi Portrait** (original game only)<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/bodhi.jpg"> 
+
+## 
+
+**9. Mazzy Portrait**<br />
+
+<img style="float: center;" src="phaere_ports/readme/images/mazzy.jpg"> 
+<div align="right"><a href="#top">Back to top</a></div>
+
+
+<hr>
+
+
 ## <a name="credits" id="credits"></a>Credits and Acknowledgements
 
 **Authors:** Phaere and <a href="http://www.shsforums.net/user/1153-rastor/">Rastor</a>  
@@ -157,11 +225,16 @@ In addition to the methods above for removing individual components, you can com
 
 - Added missing `REQUIRE_PREDICATE` process to avoid installing the mod in inaccurate games.
 - Added components `DESIGNATED` numbers and "*phaere_ports_%npc-names%*" `LABELS`.
+- Modernized and speeded up installation process:
+    - Externalized tp2 code into *gw_install_portraits.tpa* library for more comfortable readability and maintenance.
+    - Renamed portraits sub-folders and script names to fit the new installation function.
+	- Due to its portrait size (38 x 60), "*Bodhi Portrait component*" can now only be installed in original games.
+- Added native BG2:EE and EET compatibilities.
 - Replaced old-school `DECOMPILE_BCS_TO_BAF` plus `COMPILE_BAF_TO_BCS` process with more accurate `DECOMPILE_AND_PATCH` command.
 - Added "*Continue()*" to the script blocks that are patched via `EXTEND_TOP`.
-- Fixed a bug with .2da files patching: *viconnd1* and *viconnd2* (was replacing "*NVICONIL*" portrait instead of *"NVICONL*").
-- Fixed two bugs with .bcs files patching: *aerie* (was applying "*r#aeport*" spell instead of *"r#pparie*"), was patching *sarev25a* file instead of *sarev25*.
-- Resized portraits for original games to the right size (medium = 110 x 170 - small = 30 x 60).
+- Fixed a bug with .2da files patching: *viconnd1* and *viconnd2* (was replacing "*NVICONIL*" portrait instead of "*NVICONL*").
+- Fixed two bugs with .bcs files patching: *aerie* (was applying "*r#aeport*" spell instead of "*r#pparie*"), was patching *sarev25a* file instead of *sarev25*.
+- Resized portraits for original games to their right sizes (medium = 110 x 170 - small = 30 x 60).
 - Cleaned up old ids entries patch replaced with more recent BG2 Fixpack one.
 - Removed useless backup folder.
 - Lower cased files.
