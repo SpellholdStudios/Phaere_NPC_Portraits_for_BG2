@@ -1,7 +1,7 @@
 
 ![Latest Release](https://img.shields.io/github/v/release/SpellholdStudios/Phaere_NPC_Portraits_for_BG2?include_prereleases&color=darkred)<a name="top" id="top"> </a>
 ![Platform](https://img.shields.io/static/v1?label=platform&message=windows%20%7C%20Mac%20%7C%20linux&color=informational)
-![Language](https://img.shields.io/static/v1?label=language&message=English&color=limegreen)
+![Language](https://img.shields.io/static/v1?label=language&message=English%20%7C%20French&color=limegreen)
 
 <div align="center"><h1>Phaere NPC Portraits for BG2 (WIP)</h1>
 
@@ -236,8 +236,9 @@ The installer includes the following components. The number of each is the compo
 - Fixed two bugs with .bcs files patching: *aerie* (was applying "*r#aeport*" spell instead of "*r#pparie*"), was patching *sarev25a* file instead of *sarev25*.
 - Resized portraits for original games to their right sizes (medium = 110 x 170 - small = 30 x 60).
 - Cleaned up old ids entries patch replaced with more recent BG2 Fixpack one.
+- Added French translation (Gwendolyne).
 - Removed useless backup folder.
-- Reorganized mod architecture tree: created *portraits* folder to sort files according to their types.
+- Reorganized mod architecture tree: created "*lang*" and "*portraits*" folders to sort files according to their types.
 - Lower cased files.
 - Updated WeiDU installer to v246.
 - Uploaded mod to official Spellhold Studios GitHub mirror account.

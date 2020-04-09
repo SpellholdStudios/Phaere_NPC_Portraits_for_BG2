@@ -20,7 +20,14 @@ ALWAYS
 
 END // of ALWAYS BLOCK
 
-LANGUAGE ~American English~ ~english~ ~phaere_ports/english/setup.tra~
+
+LANGUAGE ~English~
+         ~english~
+		 ~phaere_ports/lang/english/setup.tra~
+
+LANGUAGE ~Francais~
+         ~french~
+		 ~phaere_ports/lang/french/setup.tra~
 
 
 /* ================ *
