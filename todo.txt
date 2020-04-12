@@ -1,0 +1,1 @@
+Resize large portraits from 256 x 400 to 210 x 330
