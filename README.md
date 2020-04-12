@@ -3,7 +3,7 @@
 ![Platform](https://img.shields.io/static/v1?label=platform&message=windows%20%7C%20Mac%20%7C%20linux&color=informational)
 ![Language](https://img.shields.io/static/v1?label=language&message=English%20%7C%20French&color=limegreen)
 
-<div align="center"><h1>Phaere NPC Portraits for BG2 (WIP)</h1>
+<div align="center"><h1>Phaere NPC Portraits for BG2</h1>
 
 <h3>A mod hosted by Spellhold Studios for Baldur's Gate II: SoA and ToB (classical and EE games),<br>
 Baldur's Gate Trilogy and EET<h3>
@@ -12,13 +12,13 @@ Baldur's Gate Trilogy and EET<h3>
 
 
 **Authors:** Phaere and Rastor  
-**Mod Website:** <a href="http://www.shsforums.net/forum/234-miscellaneous-released-mods/">Spellhold Studios</a>  
-**Mod Forum:** <a href="http://www.shsforums.net/topic/60737-super-firkraag-updated-to-v16-ee-compatible/">Phaere NPC Portraits for BG2</a>  
+**Mod Website:** <a href="http://www.shsforums.net/forum/127-mod-resurrections/">Spellhold Studios</a>  
+**Mod Forum:** <a href="http://www.shsforums.net/topic/60750-phaere-npc-portraits-for-bg2-updated-to-v50-ee-compatible/">Phaere NPC Portraits for BG2</a>  
 
 
 [Read the mod's readme](http://spellholdstudios.github.io/readmes/phaere_ports-readme-english.html)
 
-[Download the mod at Spellhold Studios](http://www.shsforums.net/files/file/1257-super-firkraag/)<br>
+[Download the mod at Spellhold Studios](http://www.shsforums.net/files/file/1259-phaere-npc-portraits-for-bg2/)<br>
 
 &nbsp;
 
@@ -46,11 +46,11 @@ This mod installs a collection of portraits by Phaere designed to replace those 
 
 This mod is designed to work on the following Infinity Engine games: the original Baldur's Gate II (BG2 or just SoA) with or without the Throne of Bhaal (ToB) expansion, Baldur's Gate II: Enhanced Edition (BG2:EE), the conversion projects <a href="http://www.shsforums.net/forum/261-bgt-weidu/">Baldur's Gate Trilogy (BGT)</a> and <a href="https://github.com/K4thos/EET/releases">Enhanced Edition Trilogy (EET)</a>.
 
-Phaere NPC Portraits for BG2 is a WeiDU mod, and therefore should be compatible with all WeiDU mods. However, we cannot test every single one. If you encounter any bugs, please <a href="http://www.shsforums.net/topic/60737-super-firkraag-updated-to-v16-ee-compatible/">report them on the forum</a>!
+Phaere NPC Portraits for BG2 is a WeiDU mod, and therefore should be compatible with all WeiDU mods. However, we cannot test every single one. If you encounter any bugs, please <a href="http://www.shsforums.net/topic/60750-phaere-npc-portraits-for-bg2-updated-to-v50-ee-compatible/">report them on the forum</a>!
 
-The mod is not compatible with other mods that change NPC portraits. Phaere’s NPC Portraits will function properly with those mods but any new NPC portraits that were added by any other mods will not be seen in-game.
+The mod is not compatible with other mods that change NPC portraits. Phaere's NPC Portraits will function properly with those mods but any new NPC portraits that were added by any other mods will not be seen in-game.
 
->Although it is not required for the Phaere NPC Portraits for BG2 to function properly, classical game players are strongly recommended to download and install the latest version of the <a href="http://www.gibberlings3.net/bg2fixpack/">BG2 Fixpack</a> before proceeding with the installation of this mod.<br>
+>Although it is not required for the Phaere NPC Portraits for BG2 mod to function properly, classical game players are strongly recommended to download and install the latest version of the <a href="http://www.gibberlings3.net/bg2fixpack/">BG2 Fixpack</a> before proceeding with the installation of this mod.<br>
 <div align="right"><a href="#top">Back to top</a></div>
 
 
@@ -133,7 +133,7 @@ The installer includes the following components. The number of each is the compo
 
 ## 
 
-**5. Imoen Portrait**<br />
+**2. Imoen Portrait**<br />
 
 <div align="center"><img style="float: center;" src="phaere_ports/readme/images/imoen.jpg"></div>
 
@@ -219,13 +219,15 @@ The installer includes the following components. The number of each is the compo
 
 ## <a name="versions" id="versions"></a>Version History
 
-#### Version 5.0 ( April 2020)
+#### Version 5.0 (12 April 2020)
 
+- Added *phaere_ports.ini* metadata file to support AL|EN's "Project Infinity".
+- Replaced `AUTHOR` keyword with `SUPPORT`.
 - Added `VERSION` flag.
 - Replaced `AT_INTERACTIVE_EXIT` deprecated command with `README`.
 - Added missing `REQUIRE_PREDICATE` process to avoid installing the mod in inaccurate games.
 - Added components `DESIGNATED` numbers and "*phaere_ports_%npc-names%*" `LABELS`.
-- Modernized and speeded up installation process:
+- Modernized and speed up installation process:
     - Externalized tp2 code into *gw_install_portraits.tpa* library for more comfortable readability and maintenance.
     - Renamed portraits sub-folders and script names to fit the new installation function.
 	- Due to its portrait size (38 x 60), "*Bodhi Portrait component*" can now only be installed in original games.
@@ -237,9 +239,11 @@ The installer includes the following components. The number of each is the compo
 - Resized portraits for original games to their right sizes (medium = 110 x 170 - small = 30 x 60).
 - Cleaned up old ids entries patch replaced with more recent BG2 Fixpack one.
 - Added French translation (Gwendolyne).
+- Wrote a new *phaere_ports-readme-english.html* readme file and moved it into new "*readme*" folder.
 - Removed useless backup folder.
 - Reorganized mod architecture tree: created "*lang*" and "*portraits*" folders to sort files according to their types.
 - Lower cased files.
+- Included Linux and Mac Os X versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
 - Updated WeiDU installer to v246.
 - Uploaded mod to official Spellhold Studios GitHub mirror account.
 
@@ -247,7 +251,7 @@ The installer includes the following components. The number of each is the compo
 
 #### Version 4.0 (16 June 2005)
 
-- Streamlined some TP2 code.
+- Streamlined some tp2 code.
 - Mac OS X now supported.
 - Cleaned up BG2 folder.
 - SoA-only installation now supported.
@@ -259,8 +263,8 @@ The installer includes the following components. The number of each is the compo
 
 #### Version 3.0
 
-- Added portraits to Bodhi and Mazzy.
-- Another attempt at fixing the bugs with Aerie’s portrait.
+- Added portraits for Bodhi and Mazzy.
+- Another attempt at fixing the bugs with Aerie's portrait.
 - Updated WeiDU installer to v168.
 
 ## 
