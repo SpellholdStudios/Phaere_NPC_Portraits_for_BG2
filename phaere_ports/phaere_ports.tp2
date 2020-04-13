@@ -2,7 +2,7 @@ BACKUP ~phaere_ports/backup~
 //AUTHOR ~rastor@rpgdungeon.net~
 SUPPORT ~Spellhold Studios at http://www.shsforums.net/forum/127-mod-resurrections/~
 
-VERSION ~v4.0~
+VERSION ~v5.0~
 
 README ~phaere_ports/readme/phaere_ports-readme-english.html~
 
@@ -124,7 +124,7 @@ BEGIN @8
 DESIGNATED 8 LABEL ~phaere_ports_bodhi~
 REQUIRE_PREDICATE GAME_IS ~bg2 tob bgt~ @23 /* You must have the original game (SoA, ToB or BGT) installed to install this component. */
 
-COPY ~phaere_ports/bodhi~ ~override~
+COPY ~phaere_ports/portraits/bodhi~ ~override~
 
 PRINT @30 // ~Patching files... This step make take a few moments.~
 COPY_EXISTING_REGEXP ~.*\.cre~ ~override~

@@ -59,12 +59,15 @@ BEGIN
 	ACTION_IF ("%script%" STRING_EQUAL "same") BEGIN
 		OUTER_TEXT_SPRINT script EVAL "%npc%"
 	END
-	
+
 // 1. COPYING portraits and spells.
 // --------------------------------
 	ACTION_IF is_ee BEGIN
-		OUTER_SPRINT small_portrait EVAL "r%npc%m"
-		ACTION_TO_UPPER %small_portrait%
+		ACTION_IF (NOT DIRECTORY_EXISTS ~portraits~) BEGIN	// workaround to avoid the first component installation failure.
+			MKDIR ~portraits~
+		END
+		OUTER_SPRINT small_portrait EVAL "r#%npc%m"
+		ACTION_TO_UPPER small_portrait
 		COPY ~phaere_ports/portraits/%npc%/r#%npc%l.bmp~ ~portraits~
 		     ~phaere_ports/portraits/%npc%/r#%npc%l.bmp~ ~portraits/r#%npc%m.bmp~
 		COPY ~phaere_ports/spells/%spell%.spl~           ~override~
